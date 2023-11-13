@@ -12,7 +12,6 @@ sum = 0
 average_value = 0
 greatest_decrease = 0
 greatest_increase = 0
-counter1 = 0
 
 print("Financial Analysis")
 print("------------------------------")
@@ -23,32 +22,34 @@ with open(data_path , 'r') as datafile:
 
     csv_reader = csv.reader(datafile, delimiter=',')
     next(csv_reader)
-     
-    #  
+               
     for row in csv_reader:
-        total_amount += int(row[1])
-        total_month += 1
-    print(f"Total Months: {total_month}")
-    print(f"Total: ${total_amount}")
-            
-    for row in csv_reader:
+        total_amount += int(row[1])     #used 'total_amount' variable to sum the value in 'Profit/Losses' column each time the 'for' loop iterates 
+        total_month += 1                #used 'total_month' variable to add 1 every time the 'for' loop iterates
+    
         counter += 1
         current_value = row[1]
             
-        if counter == 1:
+        if counter == 1:                      # used 'if' statment to skip the first value as no value exists before to subtract
             previous_value = current_value
                                                     
         else:
+            # used'subtract' variable to store the difference between current value and previus value which changes with 'counter' every time 'for' loop iterates
             subtraction = int(current_value) - int(previous_value)
-            previous_value = current_value
-            value_list.append(subtraction)
+
+            # 'current value' of present iteration becomes previus value for next iteration
+            previous_value = current_value 
                 
+            value_list.append(subtraction)
+            
+    print(f"Total Months: {total_month}")
+    print(f"Total: ${total_amount}")           
+    
     for values in value_list:
-        counter1 += 1
         sum += values
-        average_value = round(int(sum)/len(value_list),2)
-        greatest_increase = max(value_list)
-        greatest_decrease = min(value_list)
+        average_value = round((sum)/len(value_list),2)
+    greatest_increase = max(value_list)
+    greatest_decrease = min(value_list)
     print(f"Average Change: ${average_value}") 
     print(f"Greatest Increase in Profits: (${greatest_increase})") 
     print(f"Greatest Decrease in Profits: (${greatest_decrease})")      
