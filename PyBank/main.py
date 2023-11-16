@@ -12,6 +12,7 @@ sum = 0
 average_value = 0
 greatest_decrease = 0
 greatest_increase = 0
+my_list = []
 
 print("Financial Analysis")
 print("------------------------------")
@@ -32,7 +33,8 @@ with open(data_path , 'r') as datafile:
             
         if counter == 1:                      # used 'if' statment to skip the first value as no value exists before to subtract
             previous_value = current_value
-                                                    
+            my_list.append(row[0])
+                                                   
         else:
             # used'subtract' variable to store the difference between current value and previus value which changes with 'counter' every time 'for' loop iterates
             subtraction = int(current_value) - int(previous_value)
@@ -41,7 +43,8 @@ with open(data_path , 'r') as datafile:
             previous_value = current_value 
                 
             value_list.append(subtraction)
-            
+            my_list.append(row[0])
+    print(my_list)       
     print(f"Total Months: {total_month}")
     print(f"Total: ${total_amount}")           
     
@@ -50,9 +53,11 @@ with open(data_path , 'r') as datafile:
         average_value = round((sum)/len(value_list),2)
     greatest_increase = max(value_list)
     greatest_decrease = min(value_list)
+    month_greatest_increase = my_list[value_list.index(max(value_list))+1]
+    month_greatest_decrease = my_list[value_list.index(min(value_list))+1]
     print(f"Average Change: ${average_value}") 
-    print(f"Greatest Increase in Profits: (${greatest_increase})") 
-    print(f"Greatest Decrease in Profits: (${greatest_decrease})")      
+    print(f"Greatest Increase in Profits: {month_greatest_increase} (${greatest_increase})") 
+    print(f"Greatest Decrease in Profits: {month_greatest_decrease} (${greatest_decrease})")      
     
 with open("PyBank\Analysis\Result.txt", "w") as result_file:
     result_file.write("Financial Analysis\n")
@@ -60,6 +65,6 @@ with open("PyBank\Analysis\Result.txt", "w") as result_file:
     result_file.write(f"Total Months: {total_month}\n")
     result_file.write(f"Total: ${total_amount}\n")
     result_file.write(f"Average Change: ${average_value}\n")
-    result_file.write(f"Greatest Increase in Profits: (${greatest_increase})\n")
-    result_file.write(f"Greatest Decrease in Profits: (${greatest_decrease})\n")
+    result_file.write(f"Greatest Increase in Profits: {month_greatest_increase} (${greatest_increase})\n")
+    result_file.write(f"Greatest Decrease in Profits: {month_greatest_decrease} (${greatest_decrease})\n")
     
