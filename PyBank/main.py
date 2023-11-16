@@ -16,7 +16,7 @@ greatest_increase = 0
 print("Financial Analysis")
 print("------------------------------")
 
-data_path = r"Resources\budget_data.csv"
+data_path = r"PyBank\Resources\budget_data.csv"
 
 with open(data_path , 'r') as datafile:
 
@@ -54,7 +54,7 @@ with open(data_path , 'r') as datafile:
     print(f"Greatest Increase in Profits: (${greatest_increase})") 
     print(f"Greatest Decrease in Profits: (${greatest_decrease})")      
     
-with open("Result.txt", "w") as result_file:
+with open("PyBank\Analysis\Result.txt", "w") as result_file:
     result_file.write("Financial Analysis\n")
     result_file.write("----------------------------\n")
     result_file.write(f"Total Months: {total_month}\n")
@@ -63,7 +63,3 @@ with open("Result.txt", "w") as result_file:
     result_file.write(f"Greatest Increase in Profits: (${greatest_increase})\n")
     result_file.write(f"Greatest Decrease in Profits: (${greatest_decrease})\n")
     
-
-
-
-        

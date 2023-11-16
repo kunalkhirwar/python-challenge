@@ -1,7 +1,7 @@
 import os
 import csv
 
-csv_file = r"Resources\election_data.csv"
+csv_file = r"PyPoll\Resources\election_data.csv"
 
 candidate_name = {}
 candidate_list = []
@@ -46,7 +46,7 @@ with open(csv_file, 'r') as datasheet:
     print("---------------------------")
 
     #writing to the result file
-    with open("Result.txt", "w") as final_file:
+    with open("PyPoll\Analysis\Result.txt", "w") as final_file:
         final_file.write("Election Results\n")
         final_file.write("-------------------------\n")
         final_file.write(f"Total Votes: {sum(candidate_name.values())}\n")
